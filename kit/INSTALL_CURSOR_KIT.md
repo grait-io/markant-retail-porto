@@ -1,5 +1,8 @@
 # Install the Cursor-native workshop kit (1 minute, no plugin needed)
 
+**Full kit + Deck PDF on GitHub:** https://github.com/grait-io/retailai-deich/tree/alt/einfach-live/docs/Markant  
+(Room QR on *Setup check & tandems* → same URL.)
+
 Everything for the two days ships as plain Cursor files under `kit/.cursor/`:
 - **BMAD Analyst skill:** `.cursor/skills/analyst/SKILL.md` (up to 5 questions, one at a time, before specifying)
 - **BMAD Advanced Elicitation skill & `/elicit` command:** `.cursor/skills/advanced-elicitation/` (48-method catalog across 6 directions + zero-dep Node selector `pick_methods.mjs`; diagnoses weak spots, proposes 3 methods with you, runs cold read-only subagents, merges into one numbered revision) + `.cursor/commands/elicit.md`

@@ -17,11 +17,12 @@ This folder is a workshop kit, not a product. Two days, English, Cursor.
 ## Archive (superseded for room delivery)
 
 - `deck/slides.js` + `deck/index.html`: older Modules 1–8 deck; still the **generator input** for `build_deck2.js`.
-- `agenda/agenda_en.html` and time-grid variants: superseded by `agenda_v2_en.html`.
+- `agenda/agenda_en.html`, `agenda_v2_en.html`, and time-grid variants: superseded by `agenda_v3_en.html`.
 
 ## Rules
 
 - Slides: at most 6 bullets, every number with a source line (`src`), times as in the agenda.
+- Room slide style (participant clarity, new-chat cues, numbered work steps): `trainer/SLIDE_STYLE_LEARNING.md`.
 - After editing slides, open `deck/check_overflow.html`; it must report `OVERFLOW 0` (loads `index2.html`).
 - Everything is fictional. No real Markant or MSI code, numbers or names.
 - Prices in `pricing-demo` are integer cents. Never change an existing test to make it pass.

@@ -9,4 +9,6 @@ Participant workshop kit for the two-day Cursor masterclass.
 - Day 1 setup: `bash exercise/setup_day1.sh`
 - Install kit into a project: `kit/INSTALL_CURSOR_KIT.md`
 
+Goldfish reviewers are **read-only on the files they review** (they return a findings table; you save what you accept).
+
 Everything is fictional exercise material — no real Markant / MSI code.

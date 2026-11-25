@@ -14,10 +14,11 @@ Follow the skill `.cursor/skills/goldfish-review/SKILL.md`.
    - **Architecture gate:** `/goldfish arch <plan.md>`
      → runs `goldfish-architecture` against `AGENTS.md` and `.cursor/rules/`.
 2. Enforce **strict Goldfish isolation**: pass **ONLY** the explicit file paths
-   to each subagent — zero parent chat history, no summary, no hints. All
-   Goldfish subagents are strictly read-only.
+   to each subagent — zero parent chat history, no summary, no hints. Goldfish
+   are **read-only on those files** (return a findings table in chat; do not
+   rewrite the spec/plan/diff — the human saves what they accept).
 3. Wait for every subagent to finish, then merge and deduplicate into **ONE
    numbered severity-tagged findings table** (`Blocker | Major | Nit`).
-4. Do **not** edit any files. Ask the user to mark each item `accept`, `reject`,
-   or `cannot decide`, then revise the files on disk and log the round in
-   `specs/<feature>/review.md` (maximum 2 rounds).
+4. Do **not** edit project files from the Goldfish side. Ask the user to mark
+   each item `accept`, `reject`, or `cannot decide`, then revise the files on
+   disk and log the round in `specs/<feature>/review.md` (maximum 2 rounds).

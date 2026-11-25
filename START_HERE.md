@@ -5,9 +5,13 @@ needs for the two days is here — **no plugin install required**. All methods
 (BMAD Analyst elicitation, spec-kit commands, EGM Goldfish reviewers, and
 project memory) ship as plain Cursor-native files in `kit/.cursor/` and `kit/fabric/`.
 
+**Repo (kit + Deck PDF):** https://github.com/grait-io/retailai-deich/tree/alt/einfach-live/docs/Markant  
+Room QR on *Setup check & tandems* points here (`deck/assets/qr-kit-repo.png`).
+
 | What | Where | Open with |
 |---|---|---|
 | Slides (handout) | `deck/AI_Coding_Masterclass_Deck_v3_EN.pdf` | PDF |
+| Room deck (trainer / projector) | `deck/index2.html` (text from `deck/slides2.js`) | browser via `deck/serve_deck.py` |
 | Agenda (binding v3) | `agenda/Agenda_AI_Coding_Masterclass_v3_EN.pdf` · `agenda/agenda_v3_en.html` | PDF / browser |
 | **Day 1 one-command setup** | `exercise/setup_day1.sh` (Windows: `exercise/setup_day1.ps1`) | Module 1 (prepares `work/pricing-demo-spec` + `work/pricing-demo-worktrees` with git + `.cursor/`) |
 | **Cursor-native kit install (2 min)** | `kit/INSTALL_CURSOR_KIT.md` + `kit/.cursor/` | Module 1 / 2 (`cp -R kit/.cursor/* .cursor/`) |
