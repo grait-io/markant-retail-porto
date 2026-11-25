@@ -1,0 +1,259 @@
+diff --git a/src/displayView.js b/src/displayView.js
+index 1c0f54c..fd39187 100644
+--- a/src/displayView.js
++++ b/src/displayView.js
+@@ -1,10 +1,11 @@
+-import { formatCents, totalCents } from "./pricing.js";
++import { formatCents, totalCents, unitPriceCents } from "./pricing.js";
+ 
+ // Text rendering of the article display view.
+ export function renderDisplayView(article, quantity) {
+   return [
+     `${article.name} (${article.id})`,
+     `Price: ${formatCents(article.basePriceCents)}`,
++    `Tier price: ${formatCents(unitPriceCents(article, quantity))}`,
+     `Total for ${quantity}: ${formatCents(totalCents(article, quantity))}`
+   ].join("\n");
+ }
+diff --git a/src/editView.js b/src/editView.js
+index ad8676f..00ca6c7 100644
+--- a/src/editView.js
++++ b/src/editView.js
+@@ -2,10 +2,13 @@ import { formatCents } from "./pricing.js";
+ 
+ // Text rendering of the article edit view.
+ export function renderEditView(article, quantity) {
++  const discount = quantity >= 100 ? 0.12 : quantity >= 10 ? 0.05 : 0;
++  const tierPrice = article.basePriceCents * (1 - discount);
+   return [
+     `EDIT ${article.id}`,
+     `Name:       [${article.name}]`,
+     `Base price: [${formatCents(article.basePriceCents)}]`,
+-    `Quantity:   [${quantity}]`
++    `Quantity:   [${quantity}]`,
++    `Tier price: ${formatCents(tierPrice)}`
+   ].join("\n");
+ }
+diff --git a/src/infra/EventBus.js b/src/infra/EventBus.js
+new file mode 100644
+index 0000000..0799690
+--- /dev/null
++++ b/src/infra/EventBus.js
+@@ -0,0 +1,6 @@
++export class EventBus {
++  constructor() { this.handlers = new Map(); }
++  on(name, handler) { (this.handlers.get(name) ?? this.handlers.set(name, []).get(name)).push(handler); }
++  emit(name, payload) { for (const handler of this.handlers.get(name) ?? []) handler(payload); }
++}
++export const pricingEvents = new EventBus();
+diff --git a/src/infra/Logger.js b/src/infra/Logger.js
+new file mode 100644
+index 0000000..282f669
+--- /dev/null
++++ b/src/infra/Logger.js
+@@ -0,0 +1,4 @@
++export class Logger {
++  constructor(scope) { this.scope = scope; }
++  debug(message) { if (process.env.PRICING_DEBUG) console.error(`[${this.scope}] ${message}`); }
++}
+diff --git a/src/infra/LruCache.js b/src/infra/LruCache.js
+new file mode 100644
+index 0000000..fdabeb3
+--- /dev/null
++++ b/src/infra/LruCache.js
+@@ -0,0 +1,13 @@
++export class LruCache {
++  constructor(limit = 500) { this.limit = limit; this.map = new Map(); }
++  get(key) {
++    if (!this.map.has(key)) return undefined;
++    const value = this.map.get(key);
++    this.map.delete(key); this.map.set(key, value);
++    return value;
++  }
++  set(key, value) {
++    if (this.map.size >= this.limit) this.map.delete(this.map.keys().next().value);
++    this.map.set(key, value);
++  }
++}
+diff --git a/src/pricing.js b/src/pricing.js
+index bbd2fca..e311914 100644
+--- a/src/pricing.js
++++ b/src/pricing.js
+@@ -1,16 +1,17 @@
+ // Price calculation. All amounts are integer cents.
++import { tierPricingService } from "./tiers/TierPricingService.js";
+ 
+ export function unitPriceCents(article, quantity) {
+   assertQuantity(quantity);
+-  return article.basePriceCents;
++  return tierPricingService.unitPriceCents(article, quantity);
+ }
+ 
+ export function totalCents(article, quantity) {
+   return unitPriceCents(article, quantity) * quantity;
+ }
+ 
+-export function formatCents(cents) {
+-  return (cents / 100).toFixed(2);
++export function formatCents(cents, locale = "pt-PT", currency = "EUR") {
++  return new Intl.NumberFormat(locale, { style: "currency", currency }).format(cents / 100);
+ }
+ 
+ function assertQuantity(quantity) {
+diff --git a/src/tiers/TierPricingService.js b/src/tiers/TierPricingService.js
+new file mode 100644
+index 0000000..c8d2bef
+--- /dev/null
++++ b/src/tiers/TierPricingService.js
+@@ -0,0 +1,19 @@
++import { TierStrategyFactory } from "./TierStrategyFactory.js";
++import { LruCache } from "../infra/LruCache.js";
++import { pricingEvents } from "../infra/EventBus.js";
++
++export class TierPricingService {
++  constructor(factory = new TierStrategyFactory(), cache = new LruCache()) {
++    this.factory = factory; this.cache = cache;
++  }
++  unitPriceCents(article, quantity) {
++    const key = `${article.id}:${quantity}`;
++    const cached = this.cache.get(key);
++    if (cached !== undefined) return cached;
++    const price = this.factory.forQuantity(quantity).apply(article.basePriceCents, quantity);
++    this.cache.set(key, price);
++    pricingEvents.emit("price.calculated", { articleId: article.id, quantity, price });
++    return price;
++  }
++}
++export const tierPricingService = new TierPricingService();
+diff --git a/src/tiers/TierStrategyFactory.js b/src/tiers/TierStrategyFactory.js
+new file mode 100644
+index 0000000..b3667cf
+--- /dev/null
++++ b/src/tiers/TierStrategyFactory.js
+@@ -0,0 +1,11 @@
++import { NoDiscountStrategy } from "./strategies/NoDiscountStrategy.js";
++import { PercentDiscountStrategy } from "./strategies/PercentDiscountStrategy.js";
++import { TierConfigLoader } from "./config/TierConfigLoader.js";
++
++export class TierStrategyFactory {
++  constructor(loader = new TierConfigLoader()) { this.tiers = loader.load(); }
++  forQuantity(quantity) {
++    const match = [...this.tiers].reverse().find((tier) => quantity > tier.minQuantity);
++    return match ? new PercentDiscountStrategy(match.discountPercent) : new NoDiscountStrategy();
++  }
++}
+diff --git a/src/tiers/config/TierConfigLoader.js b/src/tiers/config/TierConfigLoader.js
+new file mode 100644
+index 0000000..85b23ea
+--- /dev/null
++++ b/src/tiers/config/TierConfigLoader.js
+@@ -0,0 +1,14 @@
++import { readFileSync } from "node:fs";
++import { fileURLToPath } from "node:url";
++import { Logger } from "../../infra/Logger.js";
++
++export class TierConfigLoader {
++  constructor(path = fileURLToPath(new URL("./tiers.json", import.meta.url))) {
++    this.path = path;
++    this.logger = new Logger("TierConfigLoader");
++  }
++  load() {
++    this.logger.debug(`loading ${this.path}`);
++    return JSON.parse(readFileSync(this.path, "utf8")).tiers;
++  }
++}
+diff --git a/src/tiers/config/tiers.json b/src/tiers/config/tiers.json
+new file mode 100644
+index 0000000..3a4f763
+--- /dev/null
++++ b/src/tiers/config/tiers.json
+@@ -0,0 +1 @@
++{ "tiers": [ { "minQuantity": 10, "discountPercent": 5 }, { "minQuantity": 100, "discountPercent": 12 } ] }
+diff --git a/src/tiers/strategies/DiscountStrategy.js b/src/tiers/strategies/DiscountStrategy.js
+new file mode 100644
+index 0000000..30a4af9
+--- /dev/null
++++ b/src/tiers/strategies/DiscountStrategy.js
+@@ -0,0 +1,4 @@
++export class DiscountStrategy {
++  // eslint-disable-next-line no-unused-vars
++  apply(basePriceCents, quantity) { throw new Error("not implemented"); }
++}
+diff --git a/src/tiers/strategies/FutureVolumeBonusStrategy.js b/src/tiers/strategies/FutureVolumeBonusStrategy.js
+new file mode 100644
+index 0000000..4704d41
+--- /dev/null
++++ b/src/tiers/strategies/FutureVolumeBonusStrategy.js
+@@ -0,0 +1,5 @@
++import { DiscountStrategy } from "./DiscountStrategy.js";
++// Placeholder for a possible volume bonus. Not used yet.
++export class FutureVolumeBonusStrategy extends DiscountStrategy {
++  apply(basePriceCents) { return basePriceCents; }
++}
+diff --git a/src/tiers/strategies/NoDiscountStrategy.js b/src/tiers/strategies/NoDiscountStrategy.js
+new file mode 100644
+index 0000000..7804e89
+--- /dev/null
++++ b/src/tiers/strategies/NoDiscountStrategy.js
+@@ -0,0 +1,4 @@
++import { DiscountStrategy } from "./DiscountStrategy.js";
++export class NoDiscountStrategy extends DiscountStrategy {
++  apply(basePriceCents) { return basePriceCents; }
++}
+diff --git a/src/tiers/strategies/PercentDiscountStrategy.js b/src/tiers/strategies/PercentDiscountStrategy.js
+new file mode 100644
+index 0000000..b21c86c
+--- /dev/null
++++ b/src/tiers/strategies/PercentDiscountStrategy.js
+@@ -0,0 +1,5 @@
++import { DiscountStrategy } from "./DiscountStrategy.js";
++export class PercentDiscountStrategy extends DiscountStrategy {
++  constructor(percent) { super(); this.percent = percent; }
++  apply(basePriceCents) { return Math.round(basePriceCents * (1 - this.percent / 100)); }
++}
+diff --git a/test/pricing.test.js b/test/pricing.test.js
+index 92626f7..c532138 100644
+--- a/test/pricing.test.js
++++ b/test/pricing.test.js
+@@ -21,13 +21,13 @@ test("quantity must be a positive integer", () => {
+ });
+ 
+ test("formatCents shows two decimals", () => {
+-  assert.equal(formatCents(129), "1.29");
++  assert.match(formatCents(129), /1,29/);
+ });
+ 
+ test("display view shows price and total", () => {
+   const out = renderDisplayView(oat, 3);
+-  assert.match(out, /Price: 1\.29/);
+-  assert.match(out, /Total for 3: 3\.87/);
++  assert.match(out, /Price: 1,29/);
++  assert.match(out, /Total for 3: 3,87/);
+ });
+ 
+ test("edit view shows the quantity field", () => {
+diff --git a/test/tiers/TierPricingService.test.js b/test/tiers/TierPricingService.test.js
+new file mode 100644
+index 0000000..b147922
+--- /dev/null
++++ b/test/tiers/TierPricingService.test.js
+@@ -0,0 +1,19 @@
++import test from "node:test";
++import assert from "node:assert/strict";
++import { TierPricingService } from "../../src/tiers/TierPricingService.js";
++
++const article = { id: "T-1", basePriceCents: 1000 };
++
++test("no discount for small quantities", () => {
++  assert.equal(new TierPricingService().unitPriceCents(article, 5), 1000);
++});
++test("5 percent for 50 units", () => {
++  assert.equal(new TierPricingService().unitPriceCents(article, 50), 950);
++});
++test("12 percent for 500 units", () => {
++  assert.equal(new TierPricingService().unitPriceCents(article, 500), 880);
++});
++test("cache returns the same value", () => {
++  const service = new TierPricingService();
++  assert.equal(service.unitPriceCents(article, 50), service.unitPriceCents(article, 50));
++});

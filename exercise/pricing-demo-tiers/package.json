@@ -1,0 +1,11 @@
+{
+  "name": "pricing-demo-tiers",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fictional workshop project. Not Markant code.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "start": "node src/cli.js"
+  }
+}

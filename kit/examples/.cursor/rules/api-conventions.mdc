@@ -1,0 +1,10 @@
+---
+description: REST conventions for the pricing API
+globs: src/api/**/*.ts
+alwaysApply: false
+---
+<!-- Fictional example – not Markant code -->
+- Follow the pattern in `src/api/tiers.ts` (canonical file).
+- Validate input with the schema next to the handler.
+- Commands: `npm test -- api` · `npm run lint`
+- Never: return prices as floats. Use integer cents.

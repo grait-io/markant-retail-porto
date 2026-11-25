@@ -1,0 +1,28 @@
+NOTICE — Third-Party Attributions (Cursor-Native Workshop Kit)
+
+1. Elephant-Goldfish Model (EGM)
+   Source: https://github.com/google/elephant-goldfish-model (commit 8f16812)
+   License: Apache License 2.0
+   Adapted into Cursor-native workflow skill + command + read-only subagents:
+   - Workflow skill & `/goldfish` command: kit/.cursor/skills/goldfish-review/ +
+     kit/.cursor/commands/goldfish.md
+   - Read-only subagents: kit/.cursor/agents/goldfish-*.md
+   Original upstream Cursor plugin archive is preserved untouched at
+   kit/egm-cursor-plugin_8f16812.zip.
+
+2. Spec-Kit
+   Source: https://github.com/github/spec-kit
+   Adapted into lightweight Cursor slash commands in kit/.cursor/commands/speckit.*.md.
+
+3. BMAD Method (Analyst + Advanced Elicitation)
+   Source: https://github.com/bmad-code-org/BMAD-METHOD (commit e435a225)
+   License: MIT License — Copyright (c) 2025 BMad Code, LLC
+   BMad™, BMad Method™, and BMad Core™ are trademarks of BMad Code, LLC.
+   - Analyst 5-question elicitation skill: kit/.cursor/skills/analyst/SKILL.md
+   - Advanced Elicitation skill (48-method catalog + zero-dep Node selector +
+     interactive method proposal & cold-reader rounds):
+     kit/.cursor/skills/advanced-elicitation/ + kit/.cursor/commands/elicit.md
+   The rest of BMAD's role chain is not included.
+
+4. Project memory / findings-to-lessons pattern
+   Plain-file layout in kit/fabric/ adapted from herdr-factory-loop (MIT).

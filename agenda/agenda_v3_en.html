@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workshop Agenda v3 – AI Coding Masterclass (built from your survey)</title>
+<!-- Agenda v3: Day 1 unchanged (09:30–17:00, lunch 12:30–13:30).
+     Day 2: 09:30–17:00, lunch 12:30–13:30 + MSI team meeting 13:30–15:00;
+     morning modules keep full 60m + 90m; afternoon compressed cleanly into 15:00–17:00. -->
+<style>
+:root {
+  --rai-navy: #001f60; --rai-cyan: #00a2e1; --rai-deep: #00689f;
+  --rai-wash: #f4f7fb; --rai-line: #e3e8f0; --rai-ink: #001f60; --rai-body: #17325f;
+  --rai-muted: #5b6b85; --rai-faint: #8a97a8; --rai-on-dark: #e8f0fa; --rai-kicker-dark: #8fd8f2;
+  --rai-font: "Retail AI Sans Office", "Segoe UI", "Inter", system-ui, -apple-system, Arial, sans-serif;
+  --rai-mono: ui-monospace, Menlo, "Cascadia Mono", monospace;
+}
+@page { size: A4 landscape; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; }
+body { font-family: var(--rai-font); color: var(--rai-body); font-weight: 500;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 297mm; height: 210mm; position: relative; overflow: hidden; page-break-after: always; }
+.page:last-child { page-break-after: auto; }
+
+.band { padding: 7mm 16mm 0; color: var(--rai-on-dark);
+  background: var(--rai-navy) url(assets/cover-gradient.jpg) center/cover no-repeat; position: relative; }
+.band.big { height: 31mm; }
+.band.small { height: 20mm; padding-top: 5mm; }
+.band .logo { height: 10mm; width: auto; display: block; }
+.band.small .logo { height: 9mm; }
+.band .kicker { position: absolute; top: 8mm; right: 16mm; font-family: var(--rai-mono); font-size: 8pt;
+  font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--rai-kicker-dark); text-align: right; line-height: 1.6; }
+.band.small .kicker { top: 5.5mm; }
+.band h1 { margin: 2mm 0 0; font-size: 16pt; font-weight: 800; line-height: 1.06; letter-spacing: -.015em; color: #fff; }
+.band .sub { margin-top: 1.4mm; font-size: 9pt; color: var(--rai-on-dark); }
+
+.body { padding: 4mm 16mm 0; }
+.headrow { display: flex; align-items: flex-end; justify-content: space-between; gap: 10mm; }
+.day-kicker { font-family: var(--rai-mono); font-size: 8.5pt; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--rai-deep); }
+h2 { margin: 1mm 0 0; font-size: 15pt; font-weight: 800; line-height: 1.1; letter-spacing: -.01em; color: var(--rai-ink); }
+.rule { width: 26mm; height: 1.4mm; background: var(--rai-cyan); margin: 2mm 0 2.4mm; }
+.claim { font-size: 9pt; color: var(--rai-muted); margin: 0 0 2.6mm; line-height: 1.4; max-width: 200mm; }
+.intro { font-size: 8.4pt; color: var(--rai-muted); line-height: 1.35; max-width: 128mm; text-align: right; padding-bottom: 1mm; }
+
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; font-family: var(--rai-mono); font-size: 7pt; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--rai-faint); padding: 0 3mm 1.4mm 0; border-bottom: 1px solid var(--rai-line); }
+th.need { color: var(--rai-deep); }
+td { vertical-align: top; padding: 1.15mm 3mm 1.15mm 0; border-bottom: 1px solid var(--rai-line); font-size: 8.3pt; line-height: 1.3; }
+td.time { width: 24mm; font-family: var(--rai-mono); font-size: 8pt; color: var(--rai-ink); font-weight: 700; white-space: nowrap; }
+td.topic { width: 62mm; font-weight: 700; color: var(--rai-ink); }
+td.need { width: 80mm; background: var(--rai-wash); padding-left: 2.6mm; color: var(--rai-ink); }
+td.need b { font-family: var(--rai-mono); font-size: 7.8pt; color: var(--rai-deep); }
+.mod { display: inline-block; min-width: 5mm; margin-right: 1.5mm; font-family: var(--rai-mono); font-size: 7.4pt;
+  color: #fff; background: var(--rai-navy); text-align: center; padding: .2mm 1mm; border-radius: 2px; }
+td.topic .tag { display: block; margin-top: .6mm; font-family: var(--rai-mono); font-size: 6.4pt; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--rai-deep); }
+tr.loop td.topic { border-left: 1.4mm solid var(--rai-cyan); padding-left: 2.6mm; }
+tr.break td { color: var(--rai-muted); font-weight: 500; background: var(--rai-wash); padding-top: .9mm; padding-bottom: .9mm; }
+tr.break td.topic, tr.break td.time { color: var(--rai-muted); font-weight: 500; }
+tr.break td.need { background: var(--rai-wash); }
+.tools { display: block; margin-top: .8mm; font-family: var(--rai-mono); font-size: 6.7pt; font-weight: 700; color: var(--rai-deep); letter-spacing: .02em; }
+.tools::before { content: "Cursor: "; color: var(--rai-faint); }
+
+.panel { margin-top: 3mm; background: var(--rai-wash); border-left: 1.4mm solid var(--rai-cyan); padding: 2.2mm 4mm; font-size: 8.2pt; line-height: 1.4; }
+.panel b { color: var(--rai-ink); }
+.loopline { font-family: var(--rai-mono); font-size: 7.6pt; color: var(--rai-ink); margin-top: .8mm; }
+.legend { margin-top: 1.4mm; font-size: 7.4pt; color: var(--rai-muted); }
+.legend i { display: inline-block; width: 3mm; height: 3mm; background: var(--rai-cyan); vertical-align: -0.4mm; margin-right: 1mm; font-style: normal; }
+
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 9mm; }
+.mx td { font-size: 8.3pt; padding: 1.5mm 3mm 1.5mm 0; }
+.mx td:first-child { font-weight: 700; color: var(--rai-ink); }
+.mx td.n { font-family: var(--rai-mono); font-size: 7.8pt; color: var(--rai-deep); white-space: nowrap; width: 22mm; }
+.mx td.v { font-family: var(--rai-mono); font-size: 7.8pt; white-space: nowrap; width: 24mm; }
+.mx td.v.up { color: var(--rai-ink); font-weight: 700; }
+h3 { margin: 0 0 1.6mm; font-family: var(--rai-mono); font-size: 7.6pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--rai-deep); }
+
+.footer { position: absolute; left: 16mm; right: 16mm; bottom: 7mm; display: flex; justify-content: space-between;
+  align-items: center; padding-top: 2.2mm; border-top: 1px solid var(--rai-line);
+  font-family: var(--rai-mono); font-size: 7pt; letter-spacing: .08em; text-transform: uppercase; color: var(--rai-faint); }
+.footer img { height: 4.2mm; width: auto; }
+
+.glance { display: grid; grid-template-columns: 1fr 1fr; gap: 9mm; }
+.gday h3 { margin: 0 0 .6mm; }
+.gday .gsub { font-size: 12pt; font-weight: 800; color: var(--rai-ink); margin-bottom: 1.6mm; }
+.gr { display: grid; grid-template-columns: 13mm 1fr; gap: 2mm; padding: 1.05mm 0; border-bottom: 1px solid var(--rai-line); font-size: 8.2pt; line-height: 1.25; }
+.gr b { font-family: var(--rai-mono); font-size: 7.6pt; color: var(--rai-ink); }
+.gr span strong { color: var(--rai-ink); }
+.gr span em { font-style: normal; color: var(--rai-muted); }
+.gr.br { color: var(--rai-muted); background: var(--rai-wash); }
+.gr.br b { color: var(--rai-muted); font-weight: 500; }
+.gfoot { margin-top: 1.4mm; font-size: 7.8pt; color: var(--rai-deep); font-weight: 700; }
+.lower { display: grid; grid-template-columns: 1fr 1fr; gap: 9mm; margin-top: 3.4mm; }
+.lower .panel { margin-top: 0; }
+.lower .panel + .panel { margin-top: 2.2mm; }
+.mx.small td { font-size: 7.7pt; padding: .8mm 2mm .8mm 0; }
+.mx.small th { font-size: 6.6pt; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="band big">
+    <img class="logo" src="assets/retailxai-white.png" alt="Retail × AI">
+    <div class="kicker">AI Coding Masterclass<br>Markant · MSI Portugal · v3</div>
+    <h1>From Vibe Coding to Systematic Context Engineering</h1>
+    <div class="sub">Two days with Cursor and the Elephant–Goldfish review loop · Workshop agenda, built from your pre-workshop survey</div>
+  </header>
+  <div class="body">
+    <div class="headrow">
+      <div><div class="day-kicker">Both days · 09:30 – 17:00</div><h2>Two days at a glance</h2></div>
+      <div class="intro">Built from your pre-workshop survey. Day 1 works on one shared, fictional case; Day 2 on your own code. On Day 2, lunch (12:30&nbsp;&ndash;&nbsp;13:30) is followed by your team meeting (13:30&nbsp;&ndash;&nbsp;15:00); tickets and tracks start at 15:00.</div>
+    </div>
+    <div class="rule"></div>
+    <div class="glance">
+      <div class="gday"><h3>Day 1</h3><div class="gsub">Plan &amp; delegate · shared case · lunch 12:30 – 13:30</div>
+        <div class="gr"><b>09:30</b><span><strong>Where you stand</strong> <em>· line-up, three of you show your setup, tandems</em></span></div>
+        <div class="gr"><b>10:15</b><span><strong>From ticket to validated spec</strong> <em>· elicit, spec-kit, Goldfish review</em></span></div>
+        <div class="gr br"><b>11:30</b><span>Break</span></div>
+        <div class="gr"><b>11:40</b><span><strong>Agentic workflows I</strong> <em>· split the spec, delegate to agents</em></span></div>
+        <div class="gr br"><b>12:30</b><span>Lunch</span></div>
+        <div class="gr"><b>13:30</b><span><strong>Agentic workflows II</strong> <em>· several agents or models, pick the best</em></span></div>
+        <div class="gr"><b>14:30</b><span><strong>Audit your existing setup</strong> <em>· rules, skills, context; show findings</em></span></div>
+        <div class="gr br"><b>15:30</b><span>Break</span></div>
+        <div class="gr"><b>15:45</b><span><strong>Guardrails &amp; MCP</strong> <em>· hooks, least privilege</em></span></div>
+        <div class="gr"><b>16:45</b><span><strong>Wrap-up Day 1</strong></span></div>
+        <div class="gfoot">You leave with: a validated spec, work delegated to agents, an audited setup, one hook.</div>
+      </div>
+      <div class="gday"><h3>Day 2</h3><div class="gsub">Verify &amp; apply · your own code · pause 12:30 – 15:00</div>
+        <div class="gr"><b>09:30</b><span><strong>Recap, tandems checked</strong></span></div>
+        <div class="gr"><b>09:45</b><span><strong>Map of your codebase</strong> <em>· conventions included, checked by a Goldfish</em></span></div>
+        <div class="gr br"><b>10:45</b><span>Break</span></div>
+        <div class="gr"><b>11:00</b><span><strong>Tests, review &amp; CI</strong> <em>· test first, large merge request, your own reviewer</em></span></div>
+        <div class="gr br"><b>12:30</b><span>Lunch (12:30 – 13:30)</span></div>
+        <div class="gr br"><b>13:30</b><span>Team meeting (13:30 – 15:00)</span></div>
+        <div class="gr"><b>15:00</b><span><strong>Your tickets in tracks</strong> <em>· refactoring, tests, debugging: you choose</em></span></div>
+        <div class="gr"><b>16:15</b><span><strong>Show &amp; review</strong> <em>· tandems show what they built</em></span></div>
+        <div class="gr"><b>16:40</b><span><strong>Team setup, 30-day plan &amp; feedback</strong></span></div>
+        <div class="gfoot">You leave with: a codebase map, a reviewed change, your own reviewer, a 30-day plan.</div>
+      </div>
+    </div>
+    <div class="lower">
+      <div>
+        <h3>Time follows your ranking</h3>
+        <table class="mx small"><thead><tr><th>Your need</th><th>Survey</th><th>First agenda</th><th>This agenda</th></tr></thead><tbody>
+          <tr><td>Agentic workflows</td><td class="n">rank 1 · 2.7</td><td class="v">75 · Day 2</td><td class="v up">110 · Day 1</td></tr>
+          <tr><td>Ticket to specification</td><td class="n">rank 3 · 3.4</td><td class="v">approx. 180</td><td class="v up">75</td></tr>
+          <tr><td>Tests, review, CI</td><td class="n">rank 5 · 10/14</td><td class="v">75</td><td class="v up">90</td></tr>
+          <tr><td>Large codebases, documentation</td><td class="n">2.9 · 7/14</td><td class="v">0</td><td class="v up">60</td></tr>
+          <tr><td>Peer exchange: your setups on screen</td><td class="n">13/14 daily users</td><td class="v">–</td><td class="v up">45 + tandems</td></tr>
+        </tbody></table>
+      </div>
+      <div>
+        <div class="panel"><b>How every block runs</b><br>5–15 minutes of input: note your questions, we take them in the hands-on. Then a demo you click along with. Then you work in tandems. Dark slides: listen. Light slides: your turn.</div>
+        <div class="panel"><b>Tool-independent</b><br>We train in Cursor. Spec files, fresh reviewers, a codebase map and lessons work with any coding agent.</div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer"><span>Retail × AI · AI Coding Masterclass · Agenda v3, built from your survey</span><img src="assets/retailxai-navy.png" alt=""></footer>
+</section>
+
+<section class="page">
+  <header class="band small">
+    <img class="logo" src="assets/retailxai-white.png" alt="Retail × AI">
+    <div class="kicker">AI Coding Masterclass<br>Markant · MSI Portugal · v3</div>
+  </header>
+  <div class="body">
+    <div class="day-kicker">Day 1 · 09:30 – 17:00 · one shared, fictional case</div>
+    <h2>Plan &amp; delegate</h2>
+    <div class="rule"></div>
+    <table><thead><tr><th>Time</th><th>Module</th><th>Hands-on</th><th class="need">From your survey</th></tr></thead><tbody>
+<tr><td class="time">09:30 – 10:15</td><td class="topic"><span class="mod">1</span>Where you stand<span class="tag">Line-up · your setups · tandems</span></td><td>Stand on your level. Three of you show how you work today, on screen; the others ask. We form tandems of more and less experienced colleagues, ideally from the same team. Setup check runs alongside.<span class="tools">Your own setups</span></td><td class="need"><b>13 of 14</b> use Cursor daily · <b>12</b> use rules · <b>7</b> run agents in parallel<br>Not everyone answered: the line-up shows where all of you stand</td></tr>
+<tr class="loop"><td class="time">10:15 – 11:30</td><td class="topic"><span class="mod">2</span>From ticket to validated spec<span class="tag">Shared case · elicit · specify · validate</span></td><td>One shared fictional ticket for everyone (<code>pricing-demo</code>: volume tiers across two views). The Cursor analyst skill asks at most five questions one at a time, spec-kit writes the spec, <code>/elicit</code> deep-dives it with BMAD methods, then three read-only Goldfish subagents review spec and plan. You decide, revise, validate again.<span class="tools">Analyst · /elicit · spec-kit · Goldfish</span></td><td class="need">Agent misreads the requirement: <b>5 of 14</b><br>Long chats lose details: <b>9 of 14</b> · tickets to specs: rank <b>3</b></td></tr>
+<tr class="break"><td class="time">11:30 – 11:40</td><td class="topic">Coffee break</td><td></td><td class="need"></td></tr>
+<tr class="loop"><td class="time">11:40 – 12:30</td><td class="topic"><span class="mod">3</span>Agentic workflows I: split and delegate<span class="tag">Your top topic, on Day 1</span></td><td>The validated spec becomes a task list. Two tasks that touch different files, one agent and one worktree each. You integrate and check the signs that delegation is failing.<span class="tools">Tasks · worktrees · subagents</span></td><td class="need">Agentic workflows: rank <b>1</b> (mean 2.29)<br>Delegating multi-step tasks: confidence <b>2.7 of 4</b></td></tr>
+<tr class="break"><td class="time">12:30 – 13:30</td><td class="topic">Lunch</td><td>Canteen.</td><td class="need"></td></tr>
+<tr class="loop"><td class="time">13:30 – 14:30</td><td class="topic"><span class="mod">4</span>Agentic workflows II: patterns<span class="tag">Best of N · cloud agents</span></td><td>Same task, several agents or models in worktrees: pick the best and say why. When a subagent pays off, when it only costs tokens. Cloud agents for side tasks, shown.<span class="tools">Worktrees · subagents · cloud agents</span></td><td class="need">Orchestrating several agents (free text)<br>Over-engineered AI code (free text)</td></tr>
+<tr><td class="time">14:30 – 15:30</td><td class="topic"><span class="mod">5</span>Audit your existing setup<span class="tag">Bring your own rules</span></td><td>Check your rules, AGENTS.md and skills: what is always loaded, what contradicts, what belongs in a skill. Turn one long rule into a skill. Show your findings, so we can adjust Day 2.<span class="tools">Rules · AGENTS.md · Skills</span></td><td class="need">Code breaks architecture or conventions: <b>8 of 14</b><br>Context and rules: rank <b>2</b> · validate the existing harness (free text)</td></tr>
+<tr class="break"><td class="time">15:30 – 15:45</td><td class="topic">Coffee break</td><td></td><td class="need"></td></tr>
+<tr><td class="time">15:45 – 16:45</td><td class="topic"><span class="mod">6</span>Guardrails &amp; MCP<span class="tag">Safe autonomy</span></td><td>Write one hook for your project. Inventory your MCP connections: which tools write, which token they use. Spot an instruction hidden in tool output.<span class="tools">Modes · hooks · MCP</span></td><td class="need">Security and policy limits: <b>4 of 14</b><br>MCP: rank <b>4</b> · MCP security (free text)</td></tr>
+<tr><td class="time">16:45 – 17:00</td><td class="topic">Wrap-up Day 1</td><td>Biggest insight, one thing to try tonight. Open policy questions go to your security owner.</td><td class="need">Not sure what is permitted: <b>2 of 14</b></td></tr>
+    </tbody></table>
+  </div>
+  <footer class="footer"><span>Retail × AI · AI Coding Masterclass · Agenda v3, built from your survey</span><img src="assets/retailxai-navy.png" alt=""></footer>
+</section>
+
+<section class="page">
+  <header class="band small">
+    <img class="logo" src="assets/retailxai-white.png" alt="Retail × AI">
+    <div class="kicker">AI Coding Masterclass<br>Markant · MSI Portugal · v3</div>
+  </header>
+  <div class="body">
+    <div class="day-kicker">Day 2 · 09:30 – 17:00 · your own code · pause 12:30 – 15:00</div>
+    <h2>Verify &amp; apply</h2>
+    <div class="rule"></div>
+    <table><thead><tr><th>Time</th><th>Module</th><th>Hands-on</th><th class="need">From your survey</th></tr></thead><tbody>
+<tr><td class="time">09:30 – 09:45</td><td class="topic">Check-in &amp; recap</td><td>What did you try last night? Tandems checked and, if needed, regrouped by team.</td><td class="need"></td></tr>
+<tr><td class="time">09:45 – 10:45</td><td class="topic"><span class="mod">7</span>Map of your codebase<span class="tag">Indexed is not understood</span></td><td>The agent writes a one-page map of a module of your repository, including your conventions. A Goldfish checks the map against the code. Links into a second repository.<span class="tools">Subagents · context files · .cursorignore</span></td><td class="need">Large, unfamiliar codebases: confidence <b>2.9 of 4</b><br>Documentation: <b>7 of 14</b> · several repositories: <b>6</b></td></tr>
+<tr class="break"><td class="time">10:45 – 11:00</td><td class="topic">Coffee break</td><td></td><td class="need"></td></tr>
+<tr class="loop"><td class="time">11:00 – 12:30</td><td class="topic"><span class="mod">8</span>Tests, review &amp; CI<span class="tag">Merge requests you can review</span></td><td>Test first: tests fail for the right reason before any code. Review a large AI merge request against its plan. Build your own reviewer from a Goldfish, grounded in your codebase map. What belongs in the pipeline.<span class="tools">Tests · subagents · skills</span></td><td class="need">Tests: <b>10 of 14</b> want to improve · reviewing AI code: <b>2.7</b><br>Merge requests with 70–80 files · a reviewer of your own (free text)</td></tr>
+<tr class="break"><td class="time">12:30 – 13:30</td><td class="topic">Lunch</td><td>Canteen.</td><td class="need"></td></tr>
+<tr class="break"><td class="time">13:30 – 15:00</td><td class="topic">MSI team meeting</td><td>Workshop paused for your internal meeting. Back at 15:00 for your tickets.</td><td class="need"></td></tr>
+<tr class="loop"><td class="time">15:00 – 16:15</td><td class="topic"><span class="mod">9</span>Your tickets in tracks<span class="tag">You choose</span></td><td>Your own ticket through the whole loop (75 min). Tracks: refactoring with tests before the change · test automation · debugging with a hypotheses file, including Kubernetes and Flux, read-only · feature. Done when: reviewed plan, tests that failed then passed, small diff.<span class="tools">All building blocks combined</span></td><td class="need">Refactoring: <b>8 of 14</b> · debugging: <b>8 of 14</b> · tests: <b>10</b><br>Legacy code · QA engineers in the group</td></tr>
+<tr><td class="time">16:15 – 16:40</td><td class="topic">Show &amp; review<span class="tag">Tandems present</span></td><td>Tandems show their spec, Goldfish findings and diff in 3 minutes sharp. What worked, what did not.</td><td class="need">Learn from each other</td></tr>
+<tr><td class="time">16:40 – 17:00</td><td class="topic">Team setup, 30-day plan &amp; feedback<span class="tag">Transfer · close</span></td><td>Owners for a shared setup, one number you measure now and in four weeks, level before and after, feedback survey.<span class="tools">Team Rules · shared skills · hooks</span></td><td class="need">Convincing sceptics with evidence (free text)</td></tr>
+    </tbody></table>
+    <div class="panel"><b>Please bring</b> · Laptop with Cursor, Node and git · a real project you can run and test locally · two or three tickets you would like to work on (no confidential data) · your current Cursor rules or agent setup.
+      <div class="legend"><i></i>Blocks marked in cyan practise the loop directly: ticket → elicit → spec &amp; plan → fresh review → you decide → tests → build → diff review.</div></div>
+  </div>
+  <footer class="footer"><span>Retail × AI · AI Coding Masterclass · Agenda v3, built from your survey</span><img src="assets/retailxai-navy.png" alt=""></footer>
+</section>
+
+</body>
+</html>
