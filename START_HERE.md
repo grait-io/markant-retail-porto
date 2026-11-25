@@ -5,8 +5,8 @@ needs for the two days is here — **no plugin install required**. All methods
 (BMAD Analyst elicitation, spec-kit commands, EGM Goldfish reviewers, and
 project memory) ship as plain Cursor-native files in `kit/.cursor/` and `kit/fabric/`.
 
-**Repo (kit + Deck PDF):** https://github.com/grait-io/retailai-deich/tree/alt/einfach-live/docs/Markant  
-Room QR on *Setup check & tandems* points here (`deck/assets/qr-kit-repo.png`).
+**Repo (kit + Deck PDF):** https://github.com/grait-io/markant-retail-porto  
+Room QR on *Setup check & tandems* → [`START_HERE.md`](https://github.com/grait-io/markant-retail-porto/blob/main/START_HERE.md) (`deck/assets/qr-kit-repo.png`).
 
 | What | Where | Open with |
 |---|---|---|

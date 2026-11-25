@@ -1,7 +1,7 @@
 # Install the Cursor-native workshop kit (1 minute, no plugin needed)
 
-**Full kit + Deck PDF on GitHub:** https://github.com/grait-io/retailai-deich/tree/alt/einfach-live/docs/Markant  
-(Room QR on *Setup check & tandems* → same URL.)
+**Full kit + Deck PDF on GitHub:** https://github.com/grait-io/markant-retail-porto  
+(Room QR on *Setup check & tandems* → [`START_HERE.md`](https://github.com/grait-io/markant-retail-porto/blob/main/START_HERE.md).)
 
 Everything for the two days ships as plain Cursor files under `kit/.cursor/`:
 - **BMAD Analyst skill:** `.cursor/skills/analyst/SKILL.md` (up to 5 questions, one at a time, before specifying)
