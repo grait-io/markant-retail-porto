@@ -6,11 +6,12 @@ in that module and how your team builds there. It stays when the chat is gone.
 
 **Do not copy this whole folder into your repository.** It contains a `README.md` and an
 `AGENTS.md` that would replace yours. Install with `kit/install_kit.sh`
-(see `kit/INSTALL_CURSOR_KIT.md`); it copies only the map template.
+(see `kit/INSTALL_CURSOR_KIT.md`); it copies only the map template and the path check.
 
 ## Day 2 · Module 7 in three steps
 
-1. Agent chat: `/fabric-map <module>`. It writes `context/<module>/context.md`.
+1. Agent chat: `/fabric-map <module>`. It writes `context/<module>/context.md` and the
+   Cursor rule `.cursor/rules/map-<module>.mdc`.
 2. New Agent chat: `/goldfish map context/<module>/context.md <source folder>`
    (no subagents: Prompt 5 in `.cursor/goldfish_manual_prompt.md`).
 3. Mark each finding accept or reject. Fix the map.
@@ -22,6 +23,7 @@ Worksheet for the lab: `kit/fabric/inventory_checklist.md`.
 | File | What it is |
 |------|------|
 | `context/_TEMPLATE_module.md` | Empty map. `/fabric-map` copies it to `context/<module>/context.md` |
+| `check_maps.mjs` | Path check for all maps, no AI. Installed to `context/check_maps.mjs` |
 | `context/README.md` | What every map must contain |
 | `inventory_checklist.md` | Module 7 worksheet |
 | `AGENTS.md` | Starter for a repository that has **no** `AGENTS.md` yet (15 lines or fewer). If you have one, keep it and add one line that points at your map |
@@ -34,3 +36,22 @@ Worksheet for the lab: `kit/fabric/inventory_checklist.md`.
 - Every path in a map must exist. Give each convention one example file.
 - No secrets in `context/` (tokens, passwords, connection strings).
 - Review every new or changed map with `/goldfish map …` in a **new** chat.
+
+## Keep maps true after today
+
+A map that is wrong is worse than no map. Three layers, cheapest first:
+
+1. **Attach the map automatically.** `/fabric-map` writes `.cursor/rules/map-<module>.mdc`.
+   Its `globs:` are the map's `sources:`. Cursor then adds the rule whenever an agent
+   works on a file of that module, so the agent reads the map without being told.
+2. **Path check on every commit, no AI.** `node context/check_maps.mjs` fails when a map
+   names a path that does not exist, a `sources:` pattern matches no file, the
+   `updated:` date is missing, or a line looks like a secret. Takes about a second.
+   Run it by hand, as a pre-commit hook, or as a job in your pipeline.
+3. **Fresh review only when the code moved.** When a merge request changes files inside
+   a map's `sources:` and the map is not part of that merge request, run
+   `/goldfish map context/<module>/context.md <source folder>` in a new chat.
+   Team rule: if a map is wrong, fix it in the same merge request.
+
+The path check finds dead paths. It does not find a sentence that became false.
+Only the fresh review does that.

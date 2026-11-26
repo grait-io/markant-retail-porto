@@ -19,7 +19,8 @@ Everything is plain files. No plugin.
 | `upstream/` | Untouched upstream EGM plugin archive. Reference only; you do not need it | optional |
 
 **In your own repository after install:** `.cursor/` (commands, skills, reviewers,
-`goldfish_manual_prompt.md`) and `context/_TEMPLATE_module.md`. Nothing else is added.
+`goldfish_manual_prompt.md`), `context/_TEMPLATE_module.md` and `context/check_maps.mjs`
+(path check for your maps, no AI: `node context/check_maps.mjs`). Nothing else is added.
 Your `AGENTS.md`, `README.md` and code are not touched.
 
 Words used in the kit:

@@ -3,7 +3,8 @@ name: fabric-map
 description: >-
   Write a navigation map for one module of an existing codebase: fill
   context/<module>/context.md (entry points, callers, Verify command,
-  conventions with example files, related repositories). Use when the user asks
+  conventions with example files, related repositories) and the Cursor rule that
+  attaches the map to the module's files. Use when the user asks
   for fabric-map, codebase map, module map, or inventory fabric.
 ---
 <!-- Workshop-local. Map shape matches context/_TEMPLATE_module.md. Code-graph tools and glossaries are out of scope. -->
@@ -37,15 +38,35 @@ in this codebase after the chat is gone. You write the map. You do **not** revie
 
 3. **Write the map** to `context/<module>/context.md`. Fill every bullet. No secrets,
    tokens, or connection strings. Every path you write must exist.
+   In the frontmatter, `sources:` lists the folders and files this map covers, as glob
+   patterns (for example `src/billing/**`). Keep the map short: traps, conventions and
+   entry points. Link to existing documentation; do not copy it.
 
-4. **`AGENTS.md`: add one line, never rewrite.**
+4. **Write the Cursor rule** `.cursor/rules/map-<module>.mdc`, so Cursor attaches the map
+   whenever an agent works on a file of this module. Use the same patterns as `sources:`,
+   comma-separated on one line:
+
+   ```markdown
+   ---
+   description: Module map for <module>
+   globs: src/billing/**,src/api/billing.js
+   alwaysApply: false
+   ---
+   Before you change files in this module, read `context/<module>/context.md`.
+   If your change makes a line in that map false, update the map in the same change.
+   ```
+
+5. **Run the path check** if `context/check_maps.mjs` exists: `node context/check_maps.mjs`.
+   Fix every `FAIL` line for this map before you hand off. It checks paths only, not meaning.
+
+6. **`AGENTS.md`: add one line, never rewrite.**
    - If `AGENTS.md` exists: do **not** shorten, reorder or replace it. Show the user this
      one line and add it only after they agree:
      `- Read context/<module>/context.md before searching the codebase.`
    - If no `AGENTS.md` exists: ask the user before creating one. If they agree, create it
      with that single line.
 
-5. **Hand off to the human.** Tell them to open a **new Agent chat** and type:
+7. **Hand off to the human.** Tell them to open a **new Agent chat** and type:
    `/goldfish map context/<module>/context.md <source folder>`
    (no subagents: Prompt 5 in `.cursor/goldfish_manual_prompt.md`, in a new chat).
    Do not say the map is verified. Only that fresh review can say so.
@@ -55,6 +76,8 @@ in this codebase after the chat is gone. You write the map. You do **not** revie
 ```markdown
 ---
 area: <module>
+sources:
+  - <glob pattern, e.g. src/billing/**>
 related:
   - <path-or-url-or-"n/a mono">
 updated: YYYY-MM-DD
@@ -84,6 +107,8 @@ updated: YYYY-MM-DD
 
 ## Done when
 
-- `context/<module>/context.md` exists and every bullet is filled.
+- `context/<module>/context.md` exists, every bullet is filled, `sources:` is set.
+- `.cursor/rules/map-<module>.mdc` exists with the same patterns.
+- `node context/check_maps.mjs` reports no `FAIL` for this map (when the script is installed).
 - `AGENTS.md` has the one pointer line (or the user declined it).
 - The user has the exact `/goldfish map …` line to run in a new chat.

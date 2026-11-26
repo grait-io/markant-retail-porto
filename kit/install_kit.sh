@@ -8,6 +8,7 @@
 #   - copies kit/.cursor/ (commands, skills, subagents) into <your-repo>/.cursor/
 #   - copies the manual Goldfish prompts to <your-repo>/.cursor/goldfish_manual_prompt.md
 #   - copies the map template to <your-repo>/context/_TEMPLATE_module.md
+#   - copies the map path check to <your-repo>/context/check_maps.mjs
 # What it never touches: your AGENTS.md, your README.md, your source code.
 # Kit files with the same name in <your-repo>/.cursor/ are replaced by the new version.
 set -euo pipefail
@@ -25,6 +26,7 @@ mkdir -p "$TARGET/.cursor" "$TARGET/context"
 cp -R "$KIT/.cursor/." "$TARGET/.cursor/"
 cp "$KIT/goldfish_manual_prompt.md" "$TARGET/.cursor/goldfish_manual_prompt.md"
 cp "$KIT/fabric/context/_TEMPLATE_module.md" "$TARGET/context/_TEMPLATE_module.md"
+cp "$KIT/fabric/check_maps.mjs" "$TARGET/context/check_maps.mjs"
 
 echo "Kit installed into: $TARGET"
 echo "Next:"

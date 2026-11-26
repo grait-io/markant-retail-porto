@@ -14,6 +14,10 @@ Required:
 - **Conventions (max 3)** each with an **exemplar** path that exists in the tree
   (put legacy / exceptions under **traps**, not as silent “always” rules)
 - **`related:`** — second repository path/URL, or `n/a mono`
+- **`sources:`** — the folders and files this map covers, as glob patterns (`src/billing/**`).
+  The Cursor rule `.cursor/rules/map-<module>.mdc` uses the same patterns to attach the map.
+
+Path check, no AI: `node context/check_maps.mjs` from the repository root.
 
 **Progressive disclosure:** load only the conventions that match files in the
 current plan — do not dump every house rule into always-on `AGENTS.md`.

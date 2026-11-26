@@ -7,6 +7,7 @@
 #   - copies kit\.cursor\ (commands, skills, subagents) into <your-repo>\.cursor\
 #   - copies the manual Goldfish prompts to <your-repo>\.cursor\goldfish_manual_prompt.md
 #   - copies the map template to <your-repo>\context\_TEMPLATE_module.md
+#   - copies the map path check to <your-repo>\context\check_maps.mjs
 # What it never touches: your AGENTS.md, your README.md, your source code.
 # Kit files with the same name in <your-repo>\.cursor\ are replaced by the new version.
 param(
@@ -27,6 +28,7 @@ New-Item -ItemType Directory -Force -Path (Join-Path $Target "context") | Out-Nu
 Copy-Item -Recurse -Force -Path (Join-Path $Kit ".cursor\*") -Destination (Join-Path $Target ".cursor")
 Copy-Item -Force -Path (Join-Path $Kit "goldfish_manual_prompt.md") -Destination (Join-Path $Target ".cursor\goldfish_manual_prompt.md")
 Copy-Item -Force -Path (Join-Path $Kit "fabric\context\_TEMPLATE_module.md") -Destination (Join-Path $Target "context\_TEMPLATE_module.md")
+Copy-Item -Force -Path (Join-Path $Kit "fabric\check_maps.mjs") -Destination (Join-Path $Target "context\check_maps.mjs")
 
 Write-Host "Kit installed into: $Target"
 Write-Host "Next:"

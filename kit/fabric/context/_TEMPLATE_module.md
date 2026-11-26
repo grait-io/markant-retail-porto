@@ -1,5 +1,7 @@
 ---
 area: <module>
+sources:
+  - <folder/of/this/module/**>
 related:
   - <path-or-url-to-second-repo-or-"n/a mono">
 updated: YYYY-MM-DD

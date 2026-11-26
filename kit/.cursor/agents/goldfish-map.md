@@ -23,7 +23,8 @@ You are a fresh-context verifier with **no knowledge** of the chat that generate
 3. **Broken links**: `related:` paths (including cross-repo) or file paths that do not match the tree.
 4. **Conventions without exemplars**: Each convention must cite an exemplar path that exists; flag “always” rules with no exemplar.
 5. **Secrets**: Credential-shaped strings, tokens, or connection strings in the map — flag as Blocker.
-6. **Bloat**: Details that belong in code, not in a one-page map.
+6. **Coverage**: `sources:` patterns in the frontmatter that match no files, or module code the patterns miss.
+7. **Bloat**: Details that belong in code, not in a one-page map.
 
 ## Output format
 Return at most **five** findings as one Markdown table (no chitchat, no praise):

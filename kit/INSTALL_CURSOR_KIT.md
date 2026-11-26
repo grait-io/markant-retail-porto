@@ -28,7 +28,8 @@ Then:
 
 What the script does: it copies `kit/.cursor/` into `<your-repo>/.cursor/`, the manual
 Goldfish prompts to `<your-repo>/.cursor/goldfish_manual_prompt.md`, and the map template
-to `<your-repo>/context/_TEMPLATE_module.md`. It never touches your `AGENTS.md`, your
+to `<your-repo>/context/_TEMPLATE_module.md`, and the map path check to
+`<your-repo>/context/check_maps.mjs`. It never touches your `AGENTS.md`, your
 `README.md` or your code. Kit files with the same name are replaced by the new version,
 so you can run it again after every `git pull`.
 
@@ -37,7 +38,8 @@ Run `git stash`, then `git pull`, then `git stash pop`.
 
 No repository you can use today? Work with your tandem partner on their repository.
 
-**Module 7 in three lines:** `/fabric-map <module>` writes `context/<module>/context.md`.
+**Module 7 in three lines:** `/fabric-map <module>` writes `context/<module>/context.md`
+and the Cursor rule `.cursor/rules/map-<module>.mdc` that attaches the map to the module's files.
 Open a **new Agent chat** and type `/goldfish map context/<module>/context.md <source folder>`.
 Checklist: `kit/fabric/inventory_checklist.md`.
 

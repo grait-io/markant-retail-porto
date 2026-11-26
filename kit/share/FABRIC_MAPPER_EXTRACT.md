@@ -14,6 +14,7 @@ Plain Cursor files. No plugin.
 | `.cursor/commands/goldfish.md` + `.cursor/skills/goldfish-review/` + `.cursor/agents/goldfish-map.md` | `/goldfish map`: read-only review of the map in a new chat |
 | `.cursor/goldfish_manual_prompt.md` | Prompt 5: the same review without subagents |
 | `context/_TEMPLATE_module.md` | Empty map template |
+| `context/check_maps.mjs` | Path check for all maps, no AI: `node context/check_maps.mjs` |
 | `FABRIC_MAPPER_EXTRACT.md` | This file |
 
 ## Install
