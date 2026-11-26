@@ -13,7 +13,7 @@ Tick when you have used the block on real work. Rate yourself 1 (never) to
 | 6 | Skills | package a repeatable workflow as `.cursor/skills/<name>/SKILL.md` | 2, 5, 8 | ☐ | | |
 | 7 | Hooks | block risky commands (`beforeShellExecution`); run tests after edits (`afterFileEdit`) | 6 | ☐ | | |
 | 8 | MCP | connect tools with least privilege; recognise prompt injection in tool output | 6 | ☐ | | |
-| 9 | Codebase map & project memory | build and Goldfish-verify `context/<module>/context.md`; trim noise with `.cursorignore` | 7 | ☐ | | |
+| 9 | Inventory fabric (context + conventions) | seed fabric so agents/teammates can **navigate their codebase** (`context/<module>/context.md` + thin `AGENTS.md`); Goldfish-verify; `.cursorignore` | 7 | ☐ | | |
 | 10 | Tests, diff review & CI | run the test-first loop; review a diff against its plan (`goldfish-diff` / `goldfish-simplify`) | 8, 9 | ☐ | | |
 
 *(Cloud agents, Bugbot, and Find Issues are shown as demos — availability depends on your Cursor subscription tier and policy.)*

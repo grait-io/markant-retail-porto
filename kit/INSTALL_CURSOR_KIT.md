@@ -3,6 +3,8 @@
 **Full kit + Deck PDF on GitHub:** https://github.com/grait-io/markant-retail-porto  
 (Room QR on *Setup check & tandems* → [`START_HERE.md`](https://github.com/grait-io/markant-retail-porto/blob/main/START_HERE.md).)
 
+**Day 2 Mod 7 (fabric ≠ herdr):** copy `kit/fabric/` into your repo (plain-file navigation memory — you do **not** install herdr) → fill `context/<module>/context.md` (3 conventions + exemplars) → thin `AGENTS.md` → **new chat** + `goldfish-map` (see `kit/fabric/inventory_checklist.md` + `kit/fabric/README.md`).
+
 Everything for the two days ships as plain Cursor files under `kit/.cursor/`:
 - **BMAD Analyst skill:** `.cursor/skills/analyst/SKILL.md` (up to 5 questions, one at a time, before specifying)
 - **BMAD Advanced Elicitation skill & `/elicit` command:** `.cursor/skills/advanced-elicitation/` (48-method catalog across 6 directions + zero-dep Node selector `pick_methods.mjs`; diagnoses weak spots, proposes 3 methods with you, runs cold read-only subagents, merges into one numbered revision) + `.cursor/commands/elicit.md`

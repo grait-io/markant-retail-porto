@@ -17,7 +17,7 @@ Room QR on *Setup check & tandems* → [`START_HERE.md`](https://github.com/grai
 | **Cursor-native kit install (2 min)** | `kit/INSTALL_CURSOR_KIT.md` + `kit/.cursor/` | Module 1 / 2 (`cp -R kit/.cursor/* .cursor/`) |
 | Three Goldfish reviewers on a plan | `kit/review_plan_3_goldfish.md` | Module 2 (uses `.cursor/agents/goldfish-*.md`) |
 | Manual Goldfish prompts 1–5 (fallback) | `kit/goldfish_manual_prompt.md` | New chat, zero subagents needed |
-| Project memory starter (`context/`, `specs/`, `LESSONS.md`) | `kit/fabric/` | Module 5, 7 |
+| Inventory fabric (`context/` maps + thin `AGENTS.md`) | `kit/fabric/` (+ `inventory_checklist.md`) | Module 5, **7** |
 | Rules audit | `kit/rules_audit_checklist.md` | Module 5 |
 | Example rule, skills, hooks, AGENTS.md, MCP injection | `kit/examples/` | Module 5, 6, 8 |
 | Building-block checklist (10 blocks) | `kit/building_blocks_checklist.md` | Day 1 ~10:15, Day 2 ~16:40 |

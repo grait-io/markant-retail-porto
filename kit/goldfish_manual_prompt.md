@@ -72,9 +72,11 @@ Return a table: | Conflict | Rule (file, line) | Plan line | Suggested change to
 If you cannot decide from the two documents, write "cannot decide".
 ```
 
-## Prompt 5 · Map Goldfish: verify a codebase map against actual code
+## Prompt 5 · Map Goldfish: verify an inventory fabric map against actual code
 
-Attach `context/<module>/context.md` and give read-only access to the module's source folder. Open a **new** chat.
+Attach `context/<module>/context.md` (and optional `AGENTS.md`). Give read-only
+access to the module's source folder. Open a **new** chat (fallback when
+`goldfish-map` is unavailable).
 
 ```text
 You are a reviewer with no knowledge of how this codebase map was written.
@@ -84,8 +86,11 @@ Do not edit files and do not run shell commands.
 1. Which claims (entry points, data owned, conventions, related links) does the code not support?
 2. Which important entry points, invariants, or side effects in the code are missing from the map?
 3. Which file paths or cross-repo links are stale or broken?
+4. Does each convention cite an exemplar path that exists? Flag “always” rules with no exemplar.
+5. Any secrets, tokens, or connection strings in the map? (Blocker)
 
 Return a table: | Claim in map | Verified against file | Issue | Suggested fix |
+Zero findings is a valid pass — say which files you checked.
 ```
 
 ## Then: you decide
