@@ -29,7 +29,8 @@ The zip contains no `AGENTS.md` and no `README.md`. It cannot overwrite yours.
 ## Use
 
 1. Agent chat: `/fabric-map <module>`
-   It writes `context/<module>/context.md`. It proposes one line for your `AGENTS.md`
+   It writes `context/<module>/context.md` and the Cursor rule `.cursor/rules/map-<module>.mdc`,
+   which attaches the map when an agent works on that module. It proposes one line for your `AGENTS.md`
    and adds it only if you agree.
 2. Read the map. Correct what is wrong.
 3. Open a **new Agent chat** and type:

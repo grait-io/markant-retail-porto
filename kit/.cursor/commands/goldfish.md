@@ -21,4 +21,4 @@ Follow the skill `.cursor/skills/goldfish-review/SKILL.md`.
    numbered severity-tagged findings table** (`Blocker | Major | Nit`).
 4. Do **not** edit project files from the Goldfish side. Ask the user to mark
    each item `accept`, `reject`, or `cannot decide`, then revise the files on
-   disk and log the round in `specs/<feature>/review.md` (maximum 2 rounds).
+   disk (maximum 2 rounds). Plan gate only: log the round in `specs/<feature>/review.md`.

@@ -112,10 +112,16 @@ for (const entry of readdirSync(CONTEXT, { withFileTypes: true })) {
   const seen = new Set();
   for (const m of body.matchAll(/`([^`\n]+)`/g)) {
     const token = m[1].trim().replace(/:\d+(-\d+)?$/, "");
-    if (!/^[A-Za-z0-9_.@\/-]+$/.test(token) || !token.includes("/")) continue; // not a path
+    if (!/^[A-Za-z0-9_.\/-]+$/.test(token) || !token.includes("/")) continue; // not a path
+    if (token.startsWith("/") || token.toLowerCase() === "n/a") continue; // HTTP route, not a file
     if (token.startsWith("path/to/") || seen.has(token)) continue;
     seen.add(token);
-    if (!existsSync(join(ROOT, token))) error(map, `path does not exist: ${token}`);
+    const top = token.replace(/^\.\//, "").split("/")[0];
+    if (!existsSync(join(ROOT, token))) {
+      // Top folder unknown: probably a package or route name, not a repository path.
+      if (existsSync(join(ROOT, top))) error(map, `path does not exist: ${token}`);
+      else warn(map, `not a path in this repository? ${token}`);
+    }
     else if (statSync(join(ROOT, token)).isDirectory() && readdirSync(join(ROOT, token)).length === 0)
       warn(map, `folder is empty: ${token}`);
   }

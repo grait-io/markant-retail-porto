@@ -9,7 +9,7 @@ about to change; optionally note the ticket/flow you traced across its boundary.
 
 Required:
 
-- **Purpose**, **entry points**, **callers / consumers** (or `n/a` leaf), **data owned**
+- **Purpose**, **entry points**, **callers / consumers** (or n/a for a leaf module), **data owned**
 - **Verify** — one command (or test path) that exercises this module’s boundary
 - **Conventions (max 3)** each with an **exemplar** path that exists in the tree
   (put legacy / exceptions under **traps**, not as silent “always” rules)

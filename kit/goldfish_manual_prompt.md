@@ -25,7 +25,7 @@ If the evidence is unclear, write "cannot decide" instead of guessing.
 
 ## Prompt 2 · Diff Goldfish: review a diff against its plan
 
-Produce the diff first: `git diff main...HEAD > mr.diff`. Attach `mr.diff` and the plan file, nothing else.
+Produce the diff first: `git diff <main>...HEAD --output=mr.diff`. Attach `mr.diff` and the plan file, nothing else.
 
 ```text
 You are a reviewer with no knowledge of the conversation that produced this change.

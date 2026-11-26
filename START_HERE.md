@@ -59,12 +59,12 @@ The script never touches your `AGENTS.md`, `README.md` or code. Details: `kit/IN
 | Time | Module | In your repository you do | First thing to type |
 |---|---|---|---|
 | 09:45 – 10:45 | 7 · Map of your codebase | Write a map of one module, then let a fresh reviewer check it | `/fabric-map <module>`, then in a **new chat** `/goldfish map context/<module>/context.md <source folder>` |
-| 11:00 – 12:30 | 8 · Tests, review & CI | One failing test for one of your tickets; build your own reviewer; review a real diff | `Use the test-first skill on <your ticket>`; later `/goldfish diff mr.diff <plan or ticket file>` in a **new chat** |
+| 11:00 – 12:30 | 8 · Tests, review & CI | One failing test for one of your tickets; build your own reviewer; review a real diff | `Use the analyst skill on <your ticket>`, then `/speckit.specify`, then `Use the test-first skill`; later `/goldfish diff mr.diff <plan or ticket file>` in a **new chat** |
 | 15:00 – 16:15 | 9 · Your tickets in tracks | One ticket through the full loop: map, plan, review, test, build, diff | Open `context/<module>/context.md`, then `Use the analyst skill on <your ticket>` |
 | 16:15 – 17:00 | Show & review, team setup | 3 minutes per tandem; one shared rule or skill for the team | `kit/building_blocks_checklist.md` |
 
 Skills have no slash command. To use one, name it in Agent chat, for example:
-`Use the test-first skill. Ticket: <paste ticket>.`
+`Use the analyst skill on this ticket: <paste ticket>`
 Day 2 skills: `test-first`, `verify-before-done`, `debug-with-hypotheses` (Track C).
 No subagents in your Cursor plan? Use the numbered prompts in `.cursor/goldfish_manual_prompt.md`, always in a new chat.
 

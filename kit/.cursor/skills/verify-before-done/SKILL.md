@@ -15,10 +15,10 @@ description: >-
 2. **Run it now** (full command, this turn). If hooks already ran tests after edits, re-run only when you need a claim — do not invent a third vocabulary.
 3. **Read the output.** Exit code, failure count, and whether failures match the change. Partial logs or “should pass” are not evidence.
 4. **Then claim.** State the claim **with** what you saw. If red, say red and why — do not soften into “basically done.”
-5. **MR / plan gates stay separate.** Diff vs plan = `goldfish-diff` (read-only findings). Packaging = `kit/examples/.cursor/skills/merge-request/SKILL.md`. This skill does **not** replace Goldfish and does **not** run inside `goldfish-*` agents.
+5. **MR / plan gates stay separate.** Diff vs plan = `goldfish-diff` (read-only findings). Packaging = the `merge-request` skill (`.cursor/skills/merge-request/SKILL.md`). This skill does **not** replace Goldfish and does **not** run inside `goldfish-*` agents.
 
 ## Do not
 
 - Trust an Agent “success” report without the command output.
-- Edit tests to force green (see `test-first` and fabric AGENTS).
+- Edit tests to force green (see the `test-first` skill).
 - Ask a Goldfish subagent to run shell/tests — they stay read-only on files under review.

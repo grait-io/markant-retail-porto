@@ -20,4 +20,4 @@ Write `specs/<feature>/plan.md`.
 6. **Non-goals** — copied/refined from `spec.md`.
 7. **Human approval gates** — anything risky or irreversible that requires an explicit yes.
 
-Finish by printing `specs/<feature>/plan.md` and reminding the user to run `/goldfish specs/<feature>/spec.md specs/<feature>/plan.md` (or paste `kit/review_plan_3_goldfish.md`) so the read-only Goldfish subagents (`goldfish-structure`, `goldfish-readiness`, `goldfish-zoom-out`) validate the files in fresh context before coding.
+Finish by printing `specs/<feature>/plan.md` and reminding the user to run `/goldfish specs/<feature>/spec.md specs/<feature>/plan.md` (no subagents: Prompt 1 in `.cursor/goldfish_manual_prompt.md`, in a new chat; in the kit folder it is `kit/goldfish_manual_prompt.md`) so the read-only Goldfish subagents (`goldfish-structure`, `goldfish-readiness`, `goldfish-zoom-out`) validate the files in fresh context before coding.

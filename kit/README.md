@@ -7,7 +7,7 @@ Everything is plain files. No plugin.
 | `install_kit.sh` · `install_kit.ps1` | Installs the kit into **your own repository**. One command | Day 2, 09:30 · at home |
 | `INSTALL_CURSOR_KIT.md` | The install explained, with a check that it worked | when the script is not enough |
 | `.cursor/commands/` | Slash commands: `/speckit.specify`, `/speckit.clarify`, `/speckit.plan`, `/speckit.tasks`, `/speckit.analyze`, `/elicit`, `/goldfish`, `/fabric-map` | both days |
-| `.cursor/skills/` | Skills: `analyst`, `advanced-elicitation`, `goldfish-review`, `fabric-map`, `test-first`, `verify-before-done`, `debug-with-hypotheses` | both days |
+| `.cursor/skills/` | Skills: `analyst`, `advanced-elicitation`, `goldfish-review`, `fabric-map`, `test-first`, `verify-before-done`, `debug-with-hypotheses`, `merge-request` | both days |
 | `.cursor/agents/` | Six read-only Goldfish reviewers (`goldfish-structure`, `-readiness`, `-zoom-out`, `-architecture`, `-diff`, `-map`) | both days |
 | `fabric/` | Templates and worksheet for the module map | Day 2 · Module 7 |
 | `goldfish_manual_prompt.md` | Prompts 1–5: Goldfish reviews without subagents, in a new chat | fallback, both days |

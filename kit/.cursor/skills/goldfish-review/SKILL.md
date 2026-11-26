@@ -45,7 +45,8 @@ build without guessing, the document is not ready.
    subagent tasks, or if any reviewer references details that exist only in
    this chat (and not in the files), **stop and report that isolation is
    unverified**. Direct the user to open a **new chat**, attach only the files,
-   and paste the matching prompt from `kit/goldfish_manual_prompt.md`. Do **not**
+   and paste the matching prompt from `.cursor/goldfish_manual_prompt.md`
+   (in the kit folder: `kit/goldfish_manual_prompt.md`). Do **not**
    simulate a Goldfish reviewer in the parent chat.
 
 ## Step 2 — Synthesize ONE Deduplicated Findings Table

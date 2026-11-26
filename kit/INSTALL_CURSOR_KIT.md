@@ -59,15 +59,23 @@ From your project root:
 
 ```sh
 # macOS / Linux / Git Bash
-mkdir -p .cursor
-cp -R /path/to/markant-retail-porto/kit/.cursor/. .cursor/
+KIT=/path/to/markant-retail-porto/kit
+mkdir -p .cursor context
+cp -R "$KIT/.cursor/." .cursor/
+cp "$KIT/goldfish_manual_prompt.md" .cursor/
+cp "$KIT/fabric/context/_TEMPLATE_module.md" "$KIT/fabric/check_maps.mjs" context/
 ```
 
 ```powershell
 # PowerShell (Windows)
-New-Item -ItemType Directory -Force -Path .cursor | Out-Null
-Copy-Item -Recurse -Force "C:\path\to\markant-retail-porto\kit\.cursor\*" ".cursor\"
+$Kit = "C:\path\to\markant-retail-porto\kit"
+New-Item -ItemType Directory -Force -Path .cursor, context | Out-Null
+Copy-Item -Recurse -Force "$Kit\.cursor\*" ".cursor\"
+Copy-Item -Force "$Kit\goldfish_manual_prompt.md" ".cursor\"
+Copy-Item -Force "$Kit\fabric\context\_TEMPLATE_module.md", "$Kit\fabric\check_maps.mjs" "context\"
 ```
+
+No terminal at all: copy the same files by hand in your file manager (`.cursor` is a hidden folder).
 
 Reload Cursor (`Command Palette → Developer: Reload Window`) if slash commands or subagents do not appear immediately.
 
