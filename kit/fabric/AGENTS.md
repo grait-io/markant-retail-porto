@@ -1,4 +1,4 @@
-<!-- Starter template from kit/fabric/ — keep ≤15 lines · navigation memory, not a herdr install -->
+<!-- Starter for a repository without an AGENTS.md. Keep it at 15 lines or fewer. -->
 # AGENTS.md
 
 - Read `context/<module>/context.md` before searching the codebase (navigation map first).

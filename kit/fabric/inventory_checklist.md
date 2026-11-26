@@ -1,12 +1,14 @@
-# Inventory fabric checklist (Day 2 · Module 7)
+# Module map checklist (Day 2 · Module 7)
 
-**Outcome:** a map you would open before changing unfamiliar code in *this* tree
-(not a longer chat, not a herdr install).
+**Outcome:** a map of one module of *your* codebase that you would open before
+changing unfamiliar code there.
 
-- [ ] Copied `kit/fabric/` stubs into the repo (or opened fallback `work/pricing-demo-worktrees/`)
-- [ ] Chose **one subsystem** (and ideally one ticket/flow across its boundary)
-- [ ] Filled `context/<module>/context.md`: purpose, entry points, **callers/consumers**, data owned, **Verify** command, 3 conventions + exemplar paths that **exist in this tree**, `related:`, traps (legacy/exceptions)
-- [ ] Thin `AGENTS.md` points at `context/` first (≤15 lines; progressive disclosure; no secrets in maps)
-- [ ] **New Agent chat** → `goldfish-map` on the context file(s) (fallback: Prompt 5)
-- [ ] Every finding accepted or rejected (0 findings OK)
-- [ ] Optional: skim `LESSONS.md` — promote only findings seen **twice**
+Work in your own repository. No repository today? Work with your tandem partner on theirs.
+
+- [ ] Kit installed in your repository (`kit/INSTALL_CURSOR_KIT.md`, section "Day 2"); `/fabric-map` appears in Agent chat
+- [ ] Chose **one module**: one folder or service you will change this week, small enough for one page. If you can, also one real ticket that touches it
+- [ ] Ran `/fabric-map <module>` (or filled `context/_TEMPLATE_module.md` by hand and saved it as `context/<module>/context.md`)
+- [ ] The map has: purpose, entry points, callers, data owned, a **Verify** command (your real test command), up to 3 conventions each with an example file that exists, `related:`, traps
+- [ ] Your `AGENTS.md` was **not rewritten**; it has one new line that points at the map
+- [ ] Opened a **new Agent chat** and typed `/goldfish map context/<module>/context.md <source folder>` (no subagents: Prompt 5 in `.cursor/goldfish_manual_prompt.md`)
+- [ ] Marked every finding accept or reject and fixed the map (zero findings is a pass)

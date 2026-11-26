@@ -1,6 +1,6 @@
 # Install the upstream EGM plugin in Cursor (optional — not required for the workshop)
 
-> **Workshop participants:** you do **not** need this plugin. Use the Cursor-native kit in [`kit/INSTALL_CURSOR_KIT.md`](INSTALL_CURSOR_KIT.md) (`cp -R kit/.cursor/* .cursor/`) — it gives you BMAD Analyst elicitation, spec-kit commands, and all six read-only Goldfish subagents as plain Markdown files with zero plugin policy friction.
+> **Workshop participants:** you do **not** need this plugin. Use the Cursor-native kit in [`kit/INSTALL_CURSOR_KIT.md`](../INSTALL_CURSOR_KIT.md) (`bash kit/install_kit.sh <your-repo>`) — it gives you BMAD Analyst elicitation, spec-kit commands, and all six read-only Goldfish subagents as plain Markdown files with zero plugin policy friction.
 
 Source of the pinned upstream copy: `google/elephant-goldfish-model`, commit `8f16812`
 (2026-11-10), plugin version 0.1.1, Apache-2.0. The Cursor adapter is marked
@@ -28,7 +28,7 @@ plugins are allowed. Do not disable a policy to install it.
 
 ## Smoke test
 
-Save this as `plan_smoke.md`, then paste the prompt from `review_plan_3_goldfish.md`
+Save this as `plan_smoke.md`, then paste the prompt from `kit/review_plan_3_goldfish.md`
 with the path of that file:
 
 ```md

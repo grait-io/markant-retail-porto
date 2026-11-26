@@ -8,7 +8,7 @@ NOTICE — Third-Party Attributions (Cursor-Native Workshop Kit)
      kit/.cursor/commands/goldfish.md
    - Read-only subagents: kit/.cursor/agents/goldfish-*.md
    Original upstream Cursor plugin archive is preserved untouched at
-   kit/egm-cursor-plugin_8f16812.zip.
+   kit/upstream/egm-cursor-plugin_8f16812.zip.
 
 2. Spec-Kit
    Source: https://github.com/github/spec-kit
@@ -26,3 +26,15 @@ NOTICE — Third-Party Attributions (Cursor-Native Workshop Kit)
 
 4. Project memory / findings-to-lessons pattern
    Plain-file layout in kit/fabric/ adapted from herdr-factory-loop (MIT).
+
+5. Process iron laws (test-first / verify-before-done / debug-with-hypotheses)
+   Workshop-local thin skills under kit/.cursor/skills/{test-first,verify-before-done,debug-with-hypotheses}/.
+   Procedure text matches Day 2 Mod 8 / Track C / fabric Verify checklists.
+   Pattern source: community “Superpowers” process skills (verification-before-completion,
+   test-driven-development, systematic-debugging) — adapted; **no plugin required**;
+   do not use `superpowers:` skill prefixes in this kit.
+
+6. Module map author skill (`fabric-map`) + share zip
+   kit/.cursor/skills/fabric-map/ + kit/.cursor/commands/fabric-map.md
+   Share pack: kit/share/fabric-mapper.zip with kit/share/FABRIC_MAPPER_EXTRACT.md.
+   Map shape from kit/fabric/ (see item 4). No graph-tool dependency.

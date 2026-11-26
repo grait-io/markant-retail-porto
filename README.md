@@ -1,16 +1,25 @@
 # AI Coding Masterclass · Markant / MSI Portugal
 
-Participant workshop kit for the two-day Cursor masterclass.
+Participant kit for the two-day Cursor masterclass.
 
-**Start here:** open [`START_HERE.md`](https://github.com/grait-io/markant-retail-porto/blob/main/START_HERE.md) in Cursor (`File → Open Folder` on this repo).
+**Start here:** [`START_HERE.md`](START_HERE.md)
 
-- Slides (PDF): `deck/AI_Coding_Masterclass_Deck_v3_EN.pdf`
-- Agenda (PDF): `agenda/Agenda_AI_Coding_Masterclass_v3_EN.pdf`
-- Day 1 setup: `bash exercise/setup_day1.sh`
-- Install kit into a project: `kit/INSTALL_CURSOR_KIT.md`
+| Folder | What it is |
+|---|---|
+| `kit/` | Everything you install into a repository: commands, skills, Goldfish reviewers, templates, checklists. Map: [`kit/README.md`](kit/README.md) |
+| `exercise/` | Day 1 practice project and tickets (fictional) |
+| `deck/` | Slides (PDF) |
+| `agenda/` | Agenda for both days (PDF) |
 
-Room QR on *Setup check & tandems* opens this repo’s `START_HERE.md`.
+**Day 2 and at home: install the kit into your own repository**
 
-Goldfish reviewers are **read-only on the files they review** (they return a findings table; you save what you accept).
+```sh
+git pull
+bash kit/install_kit.sh /path/to/your-repo
+# Windows PowerShell:
+powershell -ExecutionPolicy Bypass -File kit\install_kit.ps1 C:\path\to\your-repo
+```
 
-Everything is fictional exercise material — no real Markant / MSI code.
+The install never touches your `AGENTS.md`, `README.md` or code.
+
+Everything is fictional exercise material. No real Markant or MSI code.

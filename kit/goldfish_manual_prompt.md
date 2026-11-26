@@ -1,6 +1,6 @@
-# Goldfish prompts (work with or without the plugin)
+# Goldfish prompts (manual fallback)
 
-Use this when the EGM plugin is not available. Open a **new chat**. A new
+Use these prompts when `/goldfish` cannot start subagents in your Cursor. Open a **new chat**. A new
 message in the old chat is not a fresh context: the old conversation is still
 in the window. Attach **only** the plan file (or the diff and the plan).
 

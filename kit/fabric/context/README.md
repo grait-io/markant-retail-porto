@@ -4,7 +4,7 @@ One short Markdown map per module: `context/<module>/context.md` (max one page).
 Purpose: **navigation** — so an agent or teammate can find entry points,
 callers, conventions, and a verify command without the chat that wrote them.
 
-Copy `_TEMPLATE_module.md` and fill it in. Prefer **one subsystem** you are
+Run `/fabric-map <module>`, or copy `_TEMPLATE_module.md` to `context/<module>/context.md` and fill it in. Prefer **one subsystem** you are
 about to change; optionally note the ticket/flow you traced across its boundary.
 
 Required:
@@ -18,4 +18,5 @@ Required:
 **Progressive disclosure:** load only the conventions that match files in the
 current plan — do not dump every house rule into always-on `AGENTS.md`.
 
-Verify with the `goldfish-map` subagent (or Prompt 5 in `kit/goldfish_manual_prompt.md` in a **new** chat).
+Review the map in a **new Agent chat**: `/goldfish map context/<module>/context.md <source folder>`
+(no subagents: Prompt 5 in `.cursor/goldfish_manual_prompt.md`).
